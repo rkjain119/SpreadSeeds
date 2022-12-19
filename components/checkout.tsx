@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 
-import { useCart } from '../contexts/cart/cart.context'
-import { CheckCircleIcon } from '@heroicons/react/24/outline'
 import { classNames } from '../utils'
+import { useCart } from '../contexts/cart/cart.context'
 
-// const paymentMethods = [
-//   { id: 'card', title: 'Credit Card' },
-//   { id: 'cod', title: 'Pay-On-Delivery' },
-// ]
 const paymentMethods = [
   {
     id: 'card',
@@ -19,7 +14,7 @@ const paymentMethods = [
 
 export default function Checkout() {
   const { cartHandler, checkoutHandler, clearCartHandler, state } = useCart()
-  const [paymentMethod, setPaymentMethod] = useState(paymentMethods[0])
+  const [paymentMethod, setPaymentMethod] = useState(paymentMethods[1])
   const [success, setSuccess] = useState(false)
 
   interface formDataType {
@@ -74,14 +69,14 @@ export default function Checkout() {
           onSubmit={inputChangeHandler}
         >
           <div>
-            <h2 className='text-lg font-medium text-gray-900'>
+            <h2 className='text-lg font-medium text-brown-900'>
               Contact information
             </h2>
 
             <div className='mt-4'>
               <label
                 htmlFor='Email'
-                className='block text-sm font-medium text-gray-700'
+                className='block text-sm font-medium text-brown-700'
               >
                 Email address
               </label>
@@ -91,14 +86,14 @@ export default function Checkout() {
                   id='Email'
                   name='email'
                   autoComplete='email'
-                  className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                  className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                 />
               </div>
             </div>
             <div className='mt-4 sm:col-span-2'>
               <label
                 htmlFor='phone'
-                className='block text-sm font-medium text-gray-700'
+                className='block text-sm font-medium text-brown-700'
               >
                 Phone
               </label>
@@ -108,14 +103,14 @@ export default function Checkout() {
                   name='phone'
                   id='phone'
                   autoComplete='tel'
-                  className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                  className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                 />
               </div>
             </div>
           </div>
           {/* shipping */}
-          <div className='mt-10 border-t border-gray-200 pt-10'>
-            <h2 className='text-lg font-medium text-gray-900'>
+          <div className='mt-10 border-t border-brown-200 pt-10'>
+            <h2 className='text-lg font-medium text-brown-900'>
               Shipping information
             </h2>
 
@@ -123,7 +118,7 @@ export default function Checkout() {
               <div>
                 <label
                   htmlFor='firstName'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   First name
                 </label>
@@ -133,7 +128,7 @@ export default function Checkout() {
                     id='firstName'
                     name='firstName'
                     autoComplete='given-name'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   />
                 </div>
               </div>
@@ -141,7 +136,7 @@ export default function Checkout() {
               <div>
                 <label
                   htmlFor='lastName'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   Last name
                 </label>
@@ -151,7 +146,7 @@ export default function Checkout() {
                     id='lastName'
                     name='lastName'
                     autoComplete='family-name'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   />
                 </div>
               </div>
@@ -159,7 +154,7 @@ export default function Checkout() {
               <div className='sm:col-span-2'>
                 <label
                   htmlFor='address'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   Address
                 </label>
@@ -169,7 +164,7 @@ export default function Checkout() {
                     name='address'
                     id='address'
                     autoComplete='street-address'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   />
                 </div>
               </div>
@@ -177,7 +172,7 @@ export default function Checkout() {
               <div className='sm:col-span-2'>
                 <label
                   htmlFor='apartment'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   Apartment, suite, etc.
                 </label>
@@ -186,7 +181,7 @@ export default function Checkout() {
                     type='text'
                     name='apartment'
                     id='apartment'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   />
                 </div>
               </div>
@@ -194,7 +189,7 @@ export default function Checkout() {
               <div>
                 <label
                   htmlFor='city'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   City
                 </label>
@@ -204,7 +199,7 @@ export default function Checkout() {
                     name='city'
                     id='city'
                     autoComplete='address-level2'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   />
                 </div>
               </div>
@@ -212,7 +207,7 @@ export default function Checkout() {
               <div>
                 <label
                   htmlFor='country'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   Country
                 </label>
@@ -221,7 +216,7 @@ export default function Checkout() {
                     id='country'
                     name='country'
                     autoComplete='country-name'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   >
                     <option>India</option>
                   </select>
@@ -231,7 +226,7 @@ export default function Checkout() {
               <div>
                 <label
                   htmlFor='state'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   State
                 </label>
@@ -241,7 +236,7 @@ export default function Checkout() {
                     name='state'
                     id='state'
                     autoComplete='address-level1'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   />
                 </div>
               </div>
@@ -249,7 +244,7 @@ export default function Checkout() {
               <div>
                 <label
                   htmlFor='zip'
-                  className='block text-sm font-medium text-gray-700'
+                  className='block text-sm font-medium text-brown-700'
                 >
                   Zip code
                 </label>
@@ -259,7 +254,7 @@ export default function Checkout() {
                     name='zip'
                     id='zip'
                     autoComplete='postal-code'
-                    className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                    className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                   />
                 </div>
               </div>
@@ -267,9 +262,9 @@ export default function Checkout() {
           </div>
 
           {/* Payment */}
-          <div className='mt-10 border-t border-gray-200 pt-10'>
+          <div className='mt-10 border-t border-brown-200 pt-10'>
             <RadioGroup value={paymentMethod} onChange={setPaymentMethod}>
-              <RadioGroup.Label className='text-lg font-medium text-gray-900'>
+              <RadioGroup.Label className='text-lg font-medium text-brown-900'>
                 Payment method
               </RadioGroup.Label>
 
@@ -280,8 +275,8 @@ export default function Checkout() {
                     value={paymentMethod}
                     className={({ checked, active }) =>
                       classNames(
-                        checked ? 'border-transparent' : 'border-gray-300',
-                        active ? 'ring-2 ring-indigo-500' : '',
+                        checked ? 'border-transparent' : 'border-brown-300',
+                        active ? 'ring-2 ring-green-500' : '',
                         'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none'
                       )
                     }
@@ -292,7 +287,7 @@ export default function Checkout() {
                           <div className='flex flex-col'>
                             <RadioGroup.Label
                               as='span'
-                              className='block text-sm font-medium text-gray-900'
+                              className='block text-sm font-medium text-brown-900'
                             >
                               {paymentMethod.title}
                             </RadioGroup.Label>
@@ -301,9 +296,7 @@ export default function Checkout() {
                         <div
                           className={classNames(
                             active ? 'border' : 'border-2',
-                            checked
-                              ? 'border-indigo-500'
-                              : 'border-transparent',
+                            checked ? 'border-green-500' : 'border-transparent',
                             'pointer-events-none absolute -inset-px rounded-lg'
                           )}
                           aria-hidden='true'
@@ -319,7 +312,7 @@ export default function Checkout() {
                 <div className='col-span-4'>
                   <label
                     htmlFor='card-number'
-                    className='block text-sm font-medium text-gray-700'
+                    className='block text-sm font-medium text-brown-700'
                   >
                     Card number
                   </label>
@@ -329,7 +322,7 @@ export default function Checkout() {
                       id='card-number'
                       name='card-number'
                       autoComplete='cc-number'
-                      className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                      className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                     />
                   </div>
                 </div>
@@ -337,7 +330,7 @@ export default function Checkout() {
                 <div className='col-span-4'>
                   <label
                     htmlFor='name-on-card'
-                    className='block text-sm font-medium text-gray-700'
+                    className='block text-sm font-medium text-brown-700'
                   >
                     Name on card
                   </label>
@@ -347,7 +340,7 @@ export default function Checkout() {
                       id='name-on-card'
                       name='name-on-card'
                       autoComplete='cc-name'
-                      className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                      className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                     />
                   </div>
                 </div>
@@ -355,7 +348,7 @@ export default function Checkout() {
                 <div className='col-span-3'>
                   <label
                     htmlFor='expiration-date'
-                    className='block text-sm font-medium text-gray-700'
+                    className='block text-sm font-medium text-brown-700'
                   >
                     Expiration date (MM/YY)
                   </label>
@@ -365,7 +358,7 @@ export default function Checkout() {
                       name='expiration-date'
                       id='expiration-date'
                       autoComplete='cc-exp'
-                      className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                      className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                     />
                   </div>
                 </div>
@@ -373,7 +366,7 @@ export default function Checkout() {
                 <div>
                   <label
                     htmlFor='cvc'
-                    className='block text-sm font-medium text-gray-700'
+                    className='block text-sm font-medium text-brown-700'
                   >
                     CVC
                   </label>
@@ -383,14 +376,14 @@ export default function Checkout() {
                       name='cvc'
                       id='cvc'
                       autoComplete='csc'
-                      className='block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
+                      className='block w-full rounded-md border-brown-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm'
                     />
                   </div>
                 </div>
               </div>
             ) : null}
           </div>
-          <div className='mt-10 border-t border-gray-200 pt-10'>
+          <div className='mt-10 border-t border-brown-200 pt-10'>
             <button
               type='submit'
               className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 py-2 px-4 text-base font-medium text-white shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2'

@@ -11,7 +11,6 @@ export default function Home() {
       <Hero />
       <Categories />
       <Cta />
-      <h1 className='text-3xl font-bold underline'>Hello world frm index!</h1>
       <Features />
     </>
   )

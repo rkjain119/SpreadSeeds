@@ -1,103 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
-import {
-  Children,
-  Fragment,
-  JSXElementConstructor,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useState,
-} from 'react'
+import React, { Fragment, useState } from 'react'
+import Link from 'next/link'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
-  QuestionMarkCircleIcon,
-  ShoppingBagIcon,
   ShoppingCartIcon,
-  UserIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { Logo } from './icons'
 import { classNames } from '../utils'
 import DarkMode from './darkModeToggle'
-import Search from './search'
 import { useCart } from '../contexts/cart/cart.context'
+import { categories, collections } from './data'
+// import Search from './search'
 
 const navigation = {
   categories: [
     {
       name: 'Categories',
-      featured: [
-        {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-          imageAlt:
-            'Models sitting back to back, wearing Basic Tee in black and bone.',
-        },
-        {
-          name: 'Basic Tees',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-          imageAlt:
-            'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-        },
-        {
-          name: 'Accessories',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-03.jpg',
-          imageAlt:
-            'Model wearing minimalist watch with black wristband and white watch face.',
-        },
-        {
-          name: 'Carry',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-category-04.jpg',
-          imageAlt:
-            'Model opening tan leather long wallet with credit card pockets and cash pouch.',
-        },
-      ],
+      featured: categories,
     },
     {
       name: 'Collections',
-      featured: [
-        {
-          name: 'New Arrivals',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-01.jpg',
-          imageAlt:
-            'Hats and sweaters on wood shelves next to various colors of t-shirts on hangers.',
-        },
-        {
-          name: 'Basic Tees',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-02.jpg',
-          imageAlt: 'Model wearing light heather gray t-shirt.',
-        },
-        {
-          name: 'Accessories',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-03.jpg',
-          imageAlt:
-            'Grey 6-panel baseball hat with black brim, black mountain graphic on front, and light heather gray body.',
-        },
-        {
-          name: 'Carry',
-          href: '#',
-          imageSrc:
-            'https://tailwindui.com/img/ecommerce-images/mega-menu-01-men-category-04.jpg',
-          imageAlt:
-            'Model putting folded cash into slim card holder olive leather wallet with hand stitching.',
-        },
-      ],
+      featured: collections,
     },
   ],
   pages: [{ name: 'Store', href: '/store' }],
@@ -253,29 +178,31 @@ export default function Navbar() {
       <header className='relative z-40 '>
         <nav aria-label='Top'>
           {/* Secondary navigation */}
-          <div className='z-10 mx-auto max-w-7xl rounded-b bg-green-600 px-4 text-bbrown-20  backdrop-blur-3xl dark:bg-tangora-10 dark:text-offwhite-10 sm:px-6 md:rounded-lg lg:px-8'>
+          <div className='z-10 mx-auto max-w-7xl rounded-b bg-green-600 px-4 text-brown-900 backdrop-blur-3xl  dark:bg-tangora-10 dark:text-offwhite-10 sm:px-6 md:rounded-lg lg:px-8'>
             <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:py-1'>
               <div>
                 <div className='flex h-16 items-center justify-between'>
                   {/* Logo (lg+) */}
-                  <div className='hidden lg:flex lg:flex-1 lg:items-center'>
-                    <a href='#'>
-                      <span className='sr-only'>todo</span>
+                  <Link href='/'>
+                    <div className='hidden cursor-pointer lg:flex lg:flex-1 lg:items-center'>
+                      <span className='sr-only'>PlantSheet</span>
                       <Logo className='h-14 w-auto' />
-                    </a>
-                    <span className='ml-3 text-lg font-medium'>PlantSheet</span>
-                  </div>
+                      <span className='ml-3 text-lg font-medium'>
+                        PlantSheet
+                      </span>
+                    </div>
+                  </Link>
 
                   <div className='hidden h-full lg:flex'>
                     {/* Flyout menus */}
                     <Popover.Group className='inset-x-0 bottom-0 px-4'>
-                      <div className='flex h-full justify-center space-x-8'>
+                      <div className='flex h-full justify-center space-x-8 '>
                         {navigation.categories.map((category) => (
                           <Popover key={category.name} className='flex'>
                             {({ open }) => (
                               <>
                                 <div className='relative flex'>
-                                  <Popover.Button className='relative z-10 flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out'>
+                                  <Popover.Button className='relative z-10 flex items-center justify-center text-sm font-medium transition-colors duration-200 ease-out hover:text-brown-600'>
                                     {category.name}
                                     <span
                                       className={classNames(
@@ -305,13 +232,13 @@ export default function Navbar() {
 
                                     <div className='relative bg-white'>
                                       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-                                        <div className='grid grid-cols-4 gap-y-10 gap-x-8 py-16'>
+                                        <div className='grid grid-cols-3 gap-y-10 gap-x-8 py-16'>
                                           {category.featured.map((item) => (
                                             <div
                                               key={item.name}
                                               className='group relative'
                                             >
-                                              <div className='aspect-w-1 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75'>
+                                              <div className='aspect-w-2 aspect-h-1 overflow-hidden rounded-md bg-gray-100 group-hover:opacity-75'>
                                                 <img
                                                   src={item.imageSrc}
                                                   alt={item.imageAlt}
@@ -350,7 +277,7 @@ export default function Navbar() {
                           <a
                             key={page.name}
                             href={page.href}
-                            className='flex items-center text-sm font-medium '
+                            className='flex items-center text-sm  font-medium hover:text-brown-600'
                           >
                             {page.name}
                           </a>
@@ -372,7 +299,7 @@ export default function Navbar() {
 
                     {/* Search */}
                     {/* <Search /> */}
-                    <a
+                    {/* <a
                       onClick={() => setOpen(true)}
                       href='#'
                       className='ml-2 p-2 '
@@ -382,7 +309,7 @@ export default function Navbar() {
                         className='h-6 w-6'
                         aria-hidden='true'
                       />
-                    </a>
+                    </a> */}
                   </div>
 
                   {/* Logo (lg hidden) */}
@@ -398,18 +325,18 @@ export default function Navbar() {
                     >
                       Search
                     </a> */}
-                    <Search open={open} setOpen={setOpen} />
+                    {/* <Search open={open} setOpen={setOpen} />
                     <a
                       onClick={() => setOpen(true)}
                       href='#'
-                      className='ml-2 hidden p-2 text-sm font-medium  lg:block'
+                      className='ml-2 hidden p-2 text-sm font-medium lg:block'
                     >
                       <span className='sr-only'>Search</span>
                       <MagnifyingGlassIcon
                         className='h-6 w-6'
                         aria-hidden='true'
                       />
-                    </a>
+                    </a> */}
 
                     <div className='flex items-center lg:ml-8'>
                       {/* Darkmode toggle */}
@@ -419,21 +346,18 @@ export default function Navbar() {
                       <div className='ml-4 flow-root lg:ml-6'>
                         <button
                           onClick={() => cartHandler(true)}
-                          className='group -m-2 flex items-center p-2'
+                          className='group -m-2 flex items-center p-2 hover:text-brown-600'
                         >
                           <ShoppingCartIcon
-                            className='h-6 w-6 flex-shrink-0  group-hover:text-gray-500'
+                            className='h-6 w-6 flex-shrink-0'
                             aria-hidden='true'
                           />
-                          <span className='0 ml-2 text-sm font-medium group-hover:text-gray-800'>
+                          <span className='0 group- ml-2 text-sm font-medium '>
                             {getItemsCount}
                           </span>
-                          <span className='sr-only'>
-                            items in cart, view bag
-                          </span>
+                          <span className='sr-only'>items in cart</span>
                         </button>
                       </div>
-                      {/* <CartCtx /> */}
                     </div>
                   </div>
                 </div>

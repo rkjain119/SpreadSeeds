@@ -47,11 +47,6 @@ export default function Slder() {
                         </button>
                       </div>
                     </div>
-                    <div className='mt-1'>
-                      <p className='text-sm text-green-300'>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit
-                      </p>
-                    </div>
                   </div>
                   <div className='relative flex-1 py-6 px-4 sm:px-6'>
                     {state.showCart && <Cart />}
