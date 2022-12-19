@@ -70,7 +70,7 @@ export interface products {
   description: string
   price: string
   manufacturer: string
-  type: string
+  location: string
   quantity: string
   dosage: string
   substance: string

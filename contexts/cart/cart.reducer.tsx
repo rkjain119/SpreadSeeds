@@ -13,7 +13,7 @@ export interface Product {
   category?: string
   type?: string
   botanical?: string
-  specs?: string
+  size?: string
   stock?: string
 }
 
