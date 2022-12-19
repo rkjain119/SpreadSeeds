@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import localForage from 'localforage'
-const isObjectLiked = (value) =>
+const isObjectLiked = (value: { constructor: { name: string } }) =>
   value.constructor.name === 'Array' || value.constructor.name === 'Object'
 
 const rehydrate = (value: any, defaultValue?: any) => {
@@ -18,13 +18,16 @@ const rehydrate = (value: any, defaultValue?: any) => {
   }
 }
 
-const hydrate = (value) => {
+const hydrate = (value: any) => {
   if (!isObjectLiked(value)) {
     return value
   }
   return JSON.stringify(value)
 }
-const createMigration = (opts, data) => {
+const createMigration = (
+  opts: { key: string; version: string | number; migrate: any },
+  data: unknown
+) => {
   return new Promise((resolve, reject) => {
     const key = `${opts.key}-version`
     localForage.getItem(key, (err, version) => {
@@ -47,12 +50,15 @@ const createMigration = (opts, data) => {
 const config = {
   key: '@session',
   version: 1,
-  migrate: (state) => {
+  migrate: (state: any) => {
     return { ...state }
   },
 }
 
-export const useLocalforage = (state, setState) => {
+export const useLocalforage = (
+  state: unknown,
+  setState: { (payload: any): void; (arg0: unknown): void }
+) => {
   const [rehydrated, setRehydrated] = useState(false)
   const [error, setError] = useState(null)
 

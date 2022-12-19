@@ -67,7 +67,7 @@ export default async function getProducts(filter = {}) {
       label: size,
     })),
   }
-  console.log('FIlTers', 'NOT store', location, stock)
+  // console.log('FIlTers', 'NOT store', location, stock)
   const filters = [catagories, location, size]
 
   return { filters, productsData }
