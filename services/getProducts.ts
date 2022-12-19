@@ -6,7 +6,7 @@ const privatKey = process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY!.replace(
   /\\n/gm,
   '\n'
 )
-export default async function getProducts() {
+export default async function getProducts(filter = {}) {
   const doc = new GoogleSpreadsheet(productSheet)
   await doc.useServiceAccountAuth({
     client_email: email,
@@ -14,35 +14,61 @@ export default async function getProducts() {
   })
   await doc.loadInfo() // loads document properties and worksheets
   const sheet = doc.sheetsByIndex[0] // use doc.sheetsById[id]
-  // console.log(sheet)
   // read rows
   const rows = await sheet.getRows() // TODO : pass in { limit, offset }
 
-  const products = rows?.map(({ _sheet, _rowNumber, _rawData, ...fields }) => ({
-    ...fields,
-  }))
+  // apply filters
+  // const filteredRows = rows.filter((row) => {
+  //   for (const [key, value] of Object.entries(filter)) {
+  //     if (row[key] !== value) {
+  //       return false
+  //     }
+  //   }
+  //   return true
+  // })
 
-  // return unique cataegories
-  // const categories = products
-  //   ?.map((product) => product.category)
-  //   .filter((category, index, self) => self.indexOf(category) === index)
+  const productsData = rows?.map(
+    ({ _sheet, _rowNumber, _rawData, ...fields }) => ({
+      ...fields,
+    })
+  )
 
-  // const products = rows
-  // ?.filter((row) => row.category === category)
-  // .map(({ _sheet, _rowNumber, _rawData, ...fields }) => ({
-  //   ...fields,
-  // }))
+  const categoriesData = [
+    ...new Set(productsData.map((product) => product.category)),
+  ]
+  const catagories = {
+    id: 'category',
+    name: 'category',
+    options: categoriesData?.map((catagories) => ({
+      value: catagories,
+      label: catagories,
+    })),
+  }
 
-  const id = [...new Set(products.map((product) => product.id))]
-  const categories = [...new Set(products.map((product) => product.category))]
-  const type = [...new Set(products.map((product) => product.type))]
-  const stock = [...new Set(products.map((product) => product.stock))]
-  const size = [...new Set(products.map((product) => product.size))]
-  console.log('id', id)
-  console.log('categories', categories)
-  console.log('type', type)
-  console.log('stock', stock)
-  console.log('size', size)
+  const stock = [...new Set(productsData.map((product) => product.stock))]
+  const locationsData = [
+    ...new Set(productsData.map((product) => product.location)),
+  ]
+  console.log(locationsData)
+  const location = {
+    id: 'location',
+    name: 'location',
+    options: locationsData?.map((location) => ({
+      value: location,
+      label: location,
+    })),
+  }
+  const sizeData = [...new Set(productsData.map((product) => product.size))]
+  const size = {
+    id: 'size',
+    name: 'size',
+    options: sizeData?.map((size) => ({
+      value: size,
+      label: size,
+    })),
+  }
+  console.log('FIlTers', 'NOT store', location, stock)
+  const filters = [catagories, location, size]
 
-  return { categories, products }
+  return { filters, productsData }
 }

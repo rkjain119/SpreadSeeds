@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react'
-import { useStorage } from '../../hooks/useDb'
+import { useLocalforage } from '../../hooks/useLocalforage'
 import { useCartReducer } from './cart.reducer'
 
 const CartStateContext = createContext({} as any)
@@ -21,7 +21,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
     getItemsCount,
     cartTotal,
   } = useCartReducer()
-  const { rehydrated, error } = useStorage(state, rehydrateLocalState)
+  const { rehydrated, error } = useLocalforage(state, rehydrateLocalState)
   // console.log(state && state.items, 'STATE' + getItemsCount)
   // const [state, dispatch] = useReducer(useCartReducer, InitialState)
   // const providerValue = useMemo(() => ({ state, dispatch }), [state, dispatch])
@@ -51,7 +51,6 @@ function CartProvider({ children }: { children: React.ReactNode }) {
 
 function useCart() {
   const context = useContext(CartStateContext)
-  // console.log(context, 'CONTEXT')
   if (context === undefined) {
     throw new Error('useCart must be used within a <CartProvider/>')
   }

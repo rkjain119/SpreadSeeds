@@ -10,6 +10,7 @@ import {
   PlusIcon,
 } from '@heroicons/react/24/solid'
 import {
+  ChangeEvent,
   Fragment,
   JSXElementConstructor,
   Key,
@@ -21,7 +22,10 @@ import {
 import { classNames } from '../utils'
 import SingleProduct from '../components/quickView'
 import getProducts from '../services/getProducts'
+import { GetServerSideProps } from 'next'
 import { useCart } from '../contexts/cart/cart.context'
+import { useLocalforage } from '../hooks/useLocalforage'
+import localForage from 'localforage'
 export type Products = Product[]
 
 export interface Product {
@@ -32,93 +36,83 @@ export interface Product {
   description: string
   price: string
   category: string
-  type: string
+  location: string
   botanical: string
-  specs: string
+  size: string
   stock: string
 }
 
-export type categories = categorie[]
+export type FilterType = filters[]
 
-export interface categorie {
-  id: Key
-  category: string
+export interface filters {
+  id: string
+  name: string
+  options: Option[]
 }
 
-const filters = [
-  {
-    id: 'color',
-    name: 'Color',
-    options: [
-      { value: 'white', label: 'White' },
-      { value: 'beige', label: 'Beige' },
-      { value: 'blue', label: 'Blue' },
-      { value: 'brown', label: 'Brown' },
-      { value: 'green', label: 'Green' },
-      { value: 'purple', label: 'Purple' },
-    ],
-  },
-  {
-    id: 'category',
-    name: 'Category',
-    options: [
-      { value: 'new-arrivals', label: 'All New Arrivals' },
-      { value: 'tees', label: 'Tees' },
-      { value: 'crewnecks', label: 'Crewnecks' },
-      { value: 'sweatshirts', label: 'Sweatshirts' },
-      { value: 'pants-shorts', label: 'Pants & Shorts' },
-    ],
-  },
-  {
-    id: 'sizes',
-    name: 'Sizes',
-    options: [
-      { value: 'xs', label: 'XS' },
-      { value: 's', label: 'S' },
-      { value: 'm', label: 'M' },
-      { value: 'l', label: 'L' },
-      { value: 'xl', label: 'XL' },
-      { value: '2xl', label: '2XL' },
-    ],
-  },
-]
-const products = [
-  {
-    id: 1,
-    name: 'Basic Tee 8-Pack',
-    href: '#',
-    price: '$256',
-    description:
-      'Get the full lineup of our Basic Tees. Have a fresh shirt all week, and an extra for laundry day.',
-    options: '8 colors',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-01.jpg',
-    imageAlt:
-      'Eight shirts arranged on table in black, olive, grey, blue, white, green, mustard, and green.',
-  },
-  {
-    id: 2,
-    name: 'Basic Tee',
-    href: '#',
-    price: '$32',
-    description:
-      'Look like a visionary CEO and wear the same black t-shirt every day.',
-    options: 'Black',
-    imageSrc:
-      'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-02.jpg',
-    imageAlt: 'Front of plain black t-shirt.',
-  },
-]
+export interface Option {
+  value: string
+  label: string
+}
+
+// const filterss = [
+//   {
+//     id: 'color',
+//     name: 'Color',
+//     options: [
+//       { value: 'white', label: 'White' },
+//       { value: 'beige', label: 'Beige' },
+//       { value: 'blue', label: 'Blue' },
+//       { value: 'brown', label: 'Brown' },
+//       { value: 'green', label: 'Green' },
+//       { value: 'purple', label: 'Purple' },
+//     ],
+//   },
+//   {
+//     id: 'category',
+//     name: 'Category',
+//     options: [
+//       { value: 'new-arrivals', label: 'All New Arrivals' },
+//       { value: 'tees', label: 'Tees' },
+//       { value: 'crewnecks', label: 'Crewnecks' },
+//       { value: 'sweatshirts', label: 'Sweatshirts' },
+//       { value: 'pants-shorts', label: 'Pants & Shorts' },
+//     ],
+//   },
+//   {
+//     id: 'sizes',
+//     name: 'Sizes',
+//     options: [
+//       { value: 'xs', label: 'XS' },
+//       { value: 's', label: 'S' },
+//       { value: 'm', label: 'M' },
+//       { value: 'l', label: 'L' },
+//       { value: 'xl', label: 'XL' },
+//       { value: '2xl', label: '2XL' },
+//     ],
+//   },
+// ]
+// console.log(filterss)
 
 export default function Store({
-  products,
-  categories,
+  filters,
+  productsData,
 }: {
-  products: Products
-  categories: categories
+  filters: FilterType
+  productsData: Products
 }) {
+  // console.log(productsData)
+  // console.log(filters, 'FILTERS', 'STORE')
+  // localForage.getItem('products').then((products) => {
+  //   console.log(products)
+  //   products = products
+  // })
+  const [selectedFilters, setSelectedFilters] = useState<any[]>([])
+  {
+    console.log(selectedFilters)
+  }
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  // console.log(categories)
   const {
     hideAllHandler,
     toggleProductsDetailsHandler,
@@ -128,6 +122,41 @@ export default function Store({
     isInCartHandler,
     state,
   } = useCart()
+
+  const handleFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    const newFilters = [...selectedFilters]
+
+    if (event.target.checked) {
+      newFilters.push({ name, value })
+    } else {
+      const index = newFilters.findIndex(
+        (filter) => filter.name === name && filter.value === value
+      )
+      if (index > -1) {
+        newFilters.splice(index, 1)
+      }
+    }
+
+    setSelectedFilters(newFilters)
+  }
+
+  const applyFilters = (product) => {
+    if (selectedFilters.length === 0) {
+      return true
+    }
+
+    for (const filter of selectedFilters) {
+      if (product[filter.name] !== filter.value) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  const filteredData = productsData.filter(applyFilters)
+
   return (
     <>
       <div>
@@ -136,7 +165,7 @@ export default function Store({
           <Dialog
             as='div'
             className='fixed inset-0 z-40 flex lg:hidden'
-            onClose={setMobileFiltersOpen}
+            onClose={() => setMobileFiltersOpen(false)}
           >
             <Transition.Child
               as={Fragment}
@@ -209,10 +238,15 @@ export default function Store({
                                 >
                                   <input
                                     id={`${section.id}-${optionIdx}-mobile`}
-                                    name={`${section.id}[]`}
+                                    name={`${section.id}`}
                                     defaultValue={option.value}
+                                    defaultChecked={
+                                      selectedFilters[optionIdx]?.value ===
+                                      section.id
+                                    }
                                     type='checkbox'
                                     className='h-4 w-4 rounded border-green-300 text-green-600 focus:ring-green-500'
+                                    onChange={(e) => handleFilterChange(e)}
                                   />
                                   <label
                                     htmlFor={`${section.id}-${optionIdx}-mobile`}
@@ -234,18 +268,19 @@ export default function Store({
           </Dialog>
         </Transition.Root>
 
-        <main className='mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8'>
-          <div className='border-b border-green-200 pt-24 pb-10'>
-            <h1 className='text-4xl font-extrabold tracking-tight text-green-900'>
-              New Arrivals
+        <main className='mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8  '>
+          <div className='border-b border-brown-200/50 pt-24  pb-10 dark:border-offwhite-10/50 '>
+            <h1 className='text-4xl font-extrabold tracking-tight text-brown-900 dark:text-offwhite-10  '>
+              Plant Paradise
             </h1>
-            <p className='mt-4 text-base text-green-500'>
-              Checkout out the latest release of Basic Tees, new and improved
-              with four openings!`
+            <p className='mt-4 text-base  text-green-600'>
+              Shop our wide selection of high-quality, locally sourced plants
+              for any occasion
             </p>
           </div>
 
           <div className='pt-12 pb-24 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4'>
+            {/* Filters */}
             <aside>
               <h2 className='sr-only'>Filters</h2>
 
@@ -264,31 +299,35 @@ export default function Store({
               </button>
 
               <div className='hidden lg:block'>
-                <form className='space-y-10 divide-y divide-green-200'>
+                <form className='space-y-10 divide-y divide-brown-200/50 dark:divide-offwhite-10/60'>
                   {filters.map((section, sectionIdx) => (
                     <div
                       key={section.name}
                       className={sectionIdx === 0 ? '' : 'pt-10'}
                     >
                       <fieldset>
-                        <legend className='block text-sm font-medium text-green-900'>
+                        <legend className='block text-sm font-medium capitalize dark:text-green-500  '>
                           {section.name}
                         </legend>
                         <div className='space-y-3 pt-6'>
-                          {categories.map((option, optionIdx) => (
-                            <div key={option.id} className='flex items-center'>
+                          {section.options.map((option, optionIdx) => (
+                            <div
+                              key={option.value}
+                              className='flex items-center'
+                            >
                               <input
                                 id={`${section.id}-${optionIdx}`}
-                                name={`${section.id}[]`}
-                                defaultValue={option.id}
+                                name={`${section.id}`}
+                                defaultValue={option.value}
                                 type='checkbox'
-                                className='h-4 w-4 rounded border-green-300 text-green-600 focus:ring-green-500'
+                                className='h-4 w-4 rounded border-brown-300 capitalize text-green-600 focus:ring-green-500 dark:border-brown-900'
+                                onChange={(e) => handleFilterChange(e)}
                               />
                               <label
                                 htmlFor={`${section.id}-${optionIdx}`}
-                                className='ml-3 text-sm text-green-600'
+                                className='ml-3 text-sm text-brown-600  dark:text-offwhite-10'
                               >
-                                {option.toString()}
+                                {option.label}
                               </label>
                             </div>
                           ))}
@@ -299,7 +338,7 @@ export default function Store({
                 </form>
               </div>
             </aside>
-
+            {/* products */}
             <section
               aria-labelledby='product-heading'
               className='mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3'
@@ -309,7 +348,7 @@ export default function Store({
               </h2>
 
               <div className='grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3'>
-                {products.map((product) => (
+                {filteredData.map((product) => (
                   // <div key={product.id}>
                   //   <div className='relative'>
                   //     <button
@@ -347,7 +386,8 @@ export default function Store({
                   // </div>
                   <div
                     key={product.id}
-                    className='group relative flex flex-col overflow-hidden rounded-lg  border-green-200 bg-offwhite-20'
+                    className='group relative flex flex-col overflow-hidden rounded-lg border border-brown-100 dark:border-green-900'
+                    // className='group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-brown-900 dark:bg-offwhite-10'
                   >
                     <div className='aspect-w-3 aspect-h-4 bg-green-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
                       <img
@@ -363,32 +403,32 @@ export default function Store({
                     <div className='flex flex-1  justify-between space-y-2 p-4'>
                       <div className=''>
                         <button
-                          className=' text-left'
+                          className='text-left'
                           onClick={() => {
                             toggleProductsDetailsHandler(true)
                             productDetailsHandler(product)
                           }}
                         >
-                          <h3 className='mt-2 text-base font-medium text-green-900'>
+                          <h3 className='mt-2 text-base font-medium text-green-900 dark:text-offwhite-10'>
                             {product.name}
                           </h3>
                           <p className='text-sm text-green-500'>
-                            {product.type}
+                            {product.location}
                           </p>
                         </button>
                       </div>
-                      <div className='flex flex-col items-end  '>
+                      <div className='flex flex-col items-end '>
                         {isInCartHandler(product.id) ? (
                           <button
                             onClick={() => removeItemHandler(product)}
-                            className=' '
+                            className=''
                           >
                             <TrashIcon className='h-7' />
                           </button>
                         ) : (
                           <button
                             onClick={() => addItemHandler(product)}
-                            className=' '
+                            className=''
                           >
                             <ShoppingBagIcon className='h-7' />
                           </button>
@@ -411,13 +451,12 @@ export default function Store({
   )
 }
 
-export async function getServerSideProps() {
-  const { products, categories } = await getProducts()
-
+export const getServerSideProps: GetServerSideProps = async () => {
+  const { filters, productsData } = await getProducts()
   return {
     props: {
-      products,
-      categories,
+      filters,
+      productsData,
     },
   }
 }
