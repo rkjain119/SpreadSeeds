@@ -1,36 +1,21 @@
+import { ChangeEvent, Fragment, Key, useState } from 'react'
+import { GetServerSideProps } from 'next'
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
+import { ChevronDownIcon, PlusSmallIcon } from '@heroicons/react/24/solid'
 import {
-  XMarkIcon,
   ShoppingBagIcon,
   TrashIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/outline'
-import {
-  ChevronDownIcon,
-  PlusSmallIcon,
-  PlusIcon,
-} from '@heroicons/react/24/solid'
-import {
-  ChangeEvent,
-  Fragment,
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useState,
-} from 'react'
 import { classNames } from '../utils'
+import { useCart } from '../contexts/cart/cart.context'
 import SingleProduct from '../components/quickView'
 import getProducts from '../services/getProducts'
-import { GetServerSideProps } from 'next'
-import { useCart } from '../contexts/cart/cart.context'
-import { useLocalforage } from '../hooks/useLocalforage'
-import localForage from 'localforage'
+
 export type Products = Product[]
 
 export interface Product {
-  // href: string | undefined
-  id: string
+  id: Key
   name: string
   image: string
   description: string
@@ -42,10 +27,16 @@ export interface Product {
   stock: string
 }
 
-export type FilterType = filters[]
+// const filters = [
+//   {
+//     id: Key',
+//     name: 'Color',
+//     options: [{ value: 'white', label: 'White' }],
+//   },
+// ]
 
-export interface filters {
-  id: string
+export interface Filters {
+  id: Key
   name: string
   options: Option[]
 }
@@ -54,45 +45,12 @@ export interface Option {
   value: string
   label: string
 }
+export type FilterType = Filters[]
 
-// const filterss = [
-//   {
-//     id: 'color',
-//     name: 'Color',
-//     options: [
-//       { value: 'white', label: 'White' },
-//       { value: 'beige', label: 'Beige' },
-//       { value: 'blue', label: 'Blue' },
-//       { value: 'brown', label: 'Brown' },
-//       { value: 'green', label: 'Green' },
-//       { value: 'purple', label: 'Purple' },
-//     ],
-//   },
-//   {
-//     id: 'category',
-//     name: 'Category',
-//     options: [
-//       { value: 'new-arrivals', label: 'All New Arrivals' },
-//       { value: 'tees', label: 'Tees' },
-//       { value: 'crewnecks', label: 'Crewnecks' },
-//       { value: 'sweatshirts', label: 'Sweatshirts' },
-//       { value: 'pants-shorts', label: 'Pants & Shorts' },
-//     ],
-//   },
-//   {
-//     id: 'sizes',
-//     name: 'Sizes',
-//     options: [
-//       { value: 'xs', label: 'XS' },
-//       { value: 's', label: 'S' },
-//       { value: 'm', label: 'M' },
-//       { value: 'l', label: 'L' },
-//       { value: 'xl', label: 'XL' },
-//       { value: '2xl', label: '2XL' },
-//     ],
-//   },
-// ]
-// console.log(filterss)
+export interface FilterState {
+  name: keyof Product
+  value: string
+}
 
 export default function Store({
   filters,
@@ -101,16 +59,7 @@ export default function Store({
   filters: FilterType
   productsData: Products
 }) {
-  // console.log(productsData)
-  // console.log(filters, 'FILTERS', 'STORE')
-  // localForage.getItem('products').then((products) => {
-  //   console.log(products)
-  //   products = products
-  // })
-  const [selectedFilters, setSelectedFilters] = useState<any[]>([])
-  {
-    console.log(selectedFilters)
-  }
+  const [selectedFilters, setSelectedFilters] = useState<FilterState[]>([])
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const {
@@ -128,7 +77,7 @@ export default function Store({
     const newFilters = [...selectedFilters]
 
     if (event.target.checked) {
-      newFilters.push({ name, value })
+      newFilters.push({ name: name as keyof Product, value })
     } else {
       const index = newFilters.findIndex(
         (filter) => filter.name === name && filter.value === value
@@ -141,11 +90,10 @@ export default function Store({
     setSelectedFilters(newFilters)
   }
 
-  const applyFilters = (product) => {
+  const applyFilters = (product: Product) => {
     if (selectedFilters.length === 0) {
       return true
     }
-
     for (const filter of selectedFilters) {
       if (product[filter.name] !== filter.value) {
         return false

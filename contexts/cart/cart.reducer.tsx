@@ -78,7 +78,7 @@ type ActionMap<M extends { [index: string]: any }> = {
 }
 
 export const cartReducer = (
-  state: any,
+  state: InitialStateType,
   action: CartActions
   // action: CartActions | ShoppingCartActions
 ) => {
@@ -220,7 +220,10 @@ export const useCartReducer = (initialCart = InitialState) => {
   }
 }
 // cartItems, cartItemToAdd
-const addItemToCart = (state, action) => {
+const addItemToCart = (
+  state: InitialStateType,
+  action: { type?: Types.AddToCart; payload: any }
+) => {
   const existingItem = state.items.find((item) => item.id === action.payload.id)
   if (existingItem) {
     return state.items.map((item) =>
@@ -241,8 +244,19 @@ const addItemToCart = (state, action) => {
 // }
 // return [...state.items, action.payload]
 // cartItems, cartItemToRemove
-const removeItemFromCart = (state, action) => {
-  return state.items.reduce((acc, item) => {
+const removeItemFromCart = (
+  state:
+    | {
+        showDetails?: boolean
+        showCheckout?: boolean
+        showCart?: boolean
+        items: any
+        productDetails?: Product
+      }
+    | InitialStateType,
+  action: { type?: Types.RemoveItem; payload: any }
+) => {
+  return state.items.reduce((acc: any, item: { id: any; quantity: number }) => {
     if (item.id === action.payload.id) {
       const newQuantity = item.quantity - action.payload.quantity
 
@@ -254,8 +268,17 @@ const removeItemFromCart = (state, action) => {
   }, [])
 }
 
-const deleteItemFromCart = (state, action) => {
-  return state.items.reduce((acc, item) => {
+const deleteItemFromCart = (
+  state: {
+    showDetails?: boolean
+    showCheckout?: boolean
+    showCart?: boolean
+    items: any
+    productDetails?: Product
+  },
+  action: { type?: Types.DeleteItem; payload: any }
+) => {
+  return state.items.reduce((acc: any, item: { id: any }) => {
     if (item.id === action.payload.id) {
       return [...acc]
     }
