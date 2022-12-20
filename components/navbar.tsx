@@ -185,10 +185,10 @@ export default function Navbar() {
                   {/* Logo (lg+) */}
                   <Link href='/'>
                     <div className='hidden cursor-pointer lg:flex lg:flex-1 lg:items-center'>
-                      <span className='sr-only'>PlantSheet</span>
+                      <span className='sr-only'>SpreadSeeds</span>
                       <Logo className='h-14 w-auto' />
                       <span className='ml-3 text-lg font-medium'>
-                        PlantSheet
+                        SpreadSeeds
                       </span>
                     </div>
                   </Link>
