@@ -216,12 +216,12 @@ export default function Store({
           </Dialog>
         </Transition.Root>
 
-        <main className='mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8  '>
-          <div className='border-b border-brown-200/50 pt-24  pb-10 dark:border-offwhite-10/50 '>
-            <h1 className='text-4xl font-extrabold tracking-tight text-brown-900 dark:text-offwhite-10  '>
+        <main className='mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8 '>
+          <div className='border-b border-brown-200/50 pt-24 pb-10 dark:border-offwhite-10/50 '>
+            <h1 className='text-4xl font-extrabold tracking-tight text-brown-900 dark:text-offwhite-10 '>
               Plant Paradise
             </h1>
-            <p className='mt-4 text-base  text-green-600'>
+            <p className='mt-4 text-base text-green-600'>
               Shop our wide selection of high-quality, locally sourced plants
               for any occasion
             </p>
@@ -254,7 +254,7 @@ export default function Store({
                       className={sectionIdx === 0 ? '' : 'pt-10'}
                     >
                       <fieldset>
-                        <legend className='block text-sm font-medium capitalize dark:text-green-500  '>
+                        <legend className='block text-sm font-medium capitalize dark:text-green-500 '>
                           {section.name}
                         </legend>
                         <div className='space-y-3 pt-6'>
@@ -273,7 +273,7 @@ export default function Store({
                               />
                               <label
                                 htmlFor={`${section.id}-${optionIdx}`}
-                                className='ml-3 text-sm text-brown-600  dark:text-offwhite-10'
+                                className='ml-3 text-sm capitalize text-brown-600 dark:text-offwhite-10'
                               >
                                 {option.label}
                               </label>
@@ -305,24 +305,24 @@ export default function Store({
                   //         productDetailsHandler(product)
                   //       }}
                   //     >
-                  //       <div className='aspect-w-3 aspect-h-4 bg-green-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
+                  //       <div className='bg-green-200 aspect-w-3 aspect-h-4 group-hover:opacity-75 sm:aspect-none sm:h-96'>
                   //         <img
                   //           src={product.image}
                   //           alt={product.name}
-                  //           className='h-full w-full object-cover object-center sm:h-full sm:w-full'
+                  //           className='object-cover object-center w-full h-full sm:h-full sm:w-full'
                   //         />
                   //       </div>
                   //       <span aria-hidden='true' className='absolute inset-0' />
                   //       {/* {product.name} */}
                   //     </button>
 
-                  //     <div className='mt-4 flex justify-between'>
+                  //     <div className='flex justify-between mt-4'>
                   //       <div className='ml-2'>
                   //         <h3 className=' font-medium0'>{product.name}</h3>
                   //         <p className='mt-1 text-sm '>{product.type}</p>
                   //       </div>
                   // <div className='flex flex-col align-middle'>
-                  //   <button className='relative flex  items-center justify-center  rounded-md '>
+                  //   <button className='relative flex items-center justify-center rounded-md '>
                   //     <ShoppingBagIcon className='h-8' />
                   //   </button>
                   //   <p className='mr-4 text-lg font-semibold drop-shadow-2xl '>
@@ -335,7 +335,7 @@ export default function Store({
                   <div
                     key={product.id}
                     className='group relative flex flex-col overflow-hidden rounded-lg border border-brown-100 dark:border-green-900'
-                    // className='group relative flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white dark:border-brown-900 dark:bg-offwhite-10'
+                    // className='relative flex flex-col overflow-hidden bg-white border border-gray-200 rounded-lg group dark:border-brown-900 dark:bg-offwhite-10'
                   >
                     <div className='aspect-w-3 aspect-h-4 bg-green-200 group-hover:opacity-75 sm:aspect-none sm:h-96'>
                       <img
@@ -348,7 +348,7 @@ export default function Store({
                         className='h-full w-full object-cover object-center sm:h-full sm:w-full'
                       />
                     </div>
-                    <div className='flex flex-1  justify-between space-y-2 p-4'>
+                    <div className='flex flex-1 justify-between space-y-2 p-4'>
                       <div className=''>
                         <button
                           className='text-left'
@@ -357,10 +357,10 @@ export default function Store({
                             productDetailsHandler(product)
                           }}
                         >
-                          <h3 className='mt-2 text-base font-medium text-green-900 dark:text-offwhite-10'>
+                          <h3 className='mt-2 text-base font-medium capitalize text-green-900 dark:text-offwhite-10'>
                             {product.name}
                           </h3>
-                          <p className='text-sm text-green-500'>
+                          <p className='text-sm capitalize text-green-500'>
                             {product.location}
                           </p>
                         </button>
