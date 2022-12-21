@@ -137,7 +137,7 @@ export default function Navbar() {
                 </Tab.Panels>
               </Tab.Group>
 
-              <div className='space-y-6 border-t border-gray-200 py-6 px-4'>
+              <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
                 {navigation.pages.map((page) => (
                   <div key={page.name} className='flow-root'>
                     <a
@@ -150,26 +150,26 @@ export default function Navbar() {
                 ))}
               </div>
 
-              {/* <div className='space-y-6 border-t border-gray-200 py-6 px-4'>
-								<div className='flow-root'>
-									<a
-										href='#'
-										className='-m-2 block p-2 font-medium text-tangora-10'
-									>
-										Create an account
-									</a>
-								</div>
-								<div className='flow-root'>
-									<a
-										href='#'
-										className='-m-2 block p-2 font-medium text-tangora-10'
-									>
-										Sign in
-									</a>
-								</div>
-							</div> */}
+              {/* <div className='space-y-6 border-t border-gray-200 px-4 py-6'>
+                <div className='flow-root'>
+                  <a
+                    href='#'
+                    className='-m-2 block p-2 font-medium text-tangora-10'
+                  >
+                    Create an account
+                  </a>
+                </div>
+                <div className='flow-root'>
+                  <a
+                    href='#'
+                    className='-m-2 block p-2 font-medium text-tangora-10'
+                  >
+                    Sign in
+                  </a>
+                </div>
+              </div> */}
 
-              <div className='space-y-6 border-t border-gray-200 py-6 px-4'></div>
+              <div className='space-y-6 border-t border-gray-200 px-4 py-6'></div>
             </div>
           </Transition.Child>
         </Dialog>
@@ -178,17 +178,17 @@ export default function Navbar() {
       <header className='relative z-40 '>
         <nav aria-label='Top'>
           {/* Secondary navigation */}
-          <div className='z-10 mx-auto max-w-7xl rounded-b bg-green-600 px-4 text-brown-900 backdrop-blur-3xl  dark:bg-tangora-10 dark:text-offwhite-10 sm:px-6 md:rounded-lg lg:px-8'>
+          <div className='z-10 mx-auto max-w-7xl rounded-b bg-green-600 px-4 text-brown-900 backdrop-blur-3xl dark:bg-tangora-10 dark:text-offwhite-10 sm:px-6 md:rounded-lg lg:px-8'>
             <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:py-1'>
               <div>
                 <div className='flex h-16 items-center justify-between'>
                   {/* Logo (lg+) */}
                   <Link href='/'>
                     <div className='hidden cursor-pointer lg:flex lg:flex-1 lg:items-center'>
-                      <span className='sr-only'>PlantSheet</span>
+                      <span className='sr-only'>SpreadSeeds</span>
                       <Logo className='h-14 w-auto' />
                       <span className='ml-3 text-lg font-medium'>
-                        PlantSheet
+                        SpreadSeeds
                       </span>
                     </div>
                   </Link>
@@ -226,11 +226,11 @@ export default function Navbar() {
                                   <Popover.Panel className='absolute inset-x-0 top-full text-sm text-gray-500'>
                                     {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                                     <div
-                                      className='absolute inset-0 top-1/2 bg-white shadow'
+                                      className='absolute inset-0 top-1/2 shadow'
                                       aria-hidden='true'
                                     />
 
-                                    <div className='relative bg-white'>
+                                    <div className='relative bg-offwhite-10'>
                                       <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
                                         <div className='grid grid-cols-3 gap-y-10 gap-x-8 py-16'>
                                           {category.featured.map((item) => (
@@ -277,7 +277,7 @@ export default function Navbar() {
                           <a
                             key={page.name}
                             href={page.href}
-                            className='flex items-center text-sm  font-medium hover:text-brown-600'
+                            className='flex items-center text-sm font-medium hover:text-brown-600'
                           >
                             {page.name}
                           </a>
@@ -302,11 +302,11 @@ export default function Navbar() {
                     {/* <a
                       onClick={() => setOpen(true)}
                       href='#'
-                      className='ml-2 p-2 '
+                      className='p-2 ml-2 '
                     >
                       <span className='sr-only'>Search</span>
                       <MagnifyingGlassIcon
-                        className='h-6 w-6'
+                        className='w-6 h-6'
                         aria-hidden='true'
                       />
                     </a> */}
@@ -319,10 +319,7 @@ export default function Navbar() {
                   </a>
 
                   <div className='flex flex-1 items-center justify-end'>
-                    {/* <a
-                      href='#'
-                      className='hidden text-sm font-medium  lg:block'
-                    >
+                    {/* <a href='#' className='hidden text-sm font-medium lg:block'>
                       Search
                     </a> */}
                     {/* <Search open={open} setOpen={setOpen} />

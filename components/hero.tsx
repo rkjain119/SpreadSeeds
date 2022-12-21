@@ -13,12 +13,12 @@ function Hero() {
                 <span className=' text-tangora-10 dark:text-offwhite-10 xl:inline'>
                   Think
                 </span>
-                <span className=' text-green-600 xl:inline'> Green </span>
+                <span className='text-green-600  xl:inline'> Green </span>
               </div>
               <span className=' text-tangora-10 dark:text-offwhite-10 xl:inline'>
                 & Plant
               </span>
-              <span className=' text-green-600 xl:inline'> A Plant </span>
+              <span className='text-green-600  xl:inline'> A Plant </span>
             </h1>
             <p className='mx-auto mt-3 max-w-md text-lg text-brown-900 dark:text-offwhite-10 sm:text-xl md:mt-5 md:max-w-3xl'>
               Welcome to our plant paradise! Here you`ll find a wide selection

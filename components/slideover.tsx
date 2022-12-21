@@ -12,7 +12,7 @@ export default function Slder() {
     <Transition.Root show={state.showCart || state.showCheckout} as={Fragment}>
       <Dialog
         as='div'
-        className='overflow-hidde fixed inset-0 z-50'
+        className='fixed inset-0 z-50 overflow-hidden'
         onClose={() => hideAllHandler()}
       >
         <div className='absolute inset-0 overflow-hidden'>
@@ -29,9 +29,9 @@ export default function Slder() {
               leaveTo='translate-x-full'
             >
               <div className='pointer-events-auto w-screen max-w-md'>
-                <div className='flex h-full flex-col overflow-y-scroll bg-offwhite-10  shadow-xl'>
+                <div className='flex h-full flex-col overflow-y-scroll bg-offwhite-10 shadow-xl'>
                   <div className='hidden h-6 xl:block' />
-                  <div className=' items-center justify-between  bg-green-600 py-[1.13rem] sm:px-6 md:px-4 lg:px-5 xl:py-[1.37rem]'>
+                  <div className='items-center justify-between  bg-green-600 py-[1.13rem] px-5 sm:px-6 md:px-4 xl:py-[1.37rem]'>
                     <div className='flex items-center justify-between'>
                       <Dialog.Title className='text-lg font-medium text-white'>
                         {state.showCart ? 'Cart' : 'Checkout'}
@@ -48,7 +48,7 @@ export default function Slder() {
                       </div>
                     </div>
                   </div>
-                  <div className='relative flex-1 py-6 px-4 sm:px-6'>
+                  <div className='relative flex-1 px-4 py-6 sm:px-6'>
                     {state.showCart && <Cart />}
                     {state.showCheckout && <Checkout />}
                   </div>

@@ -54,7 +54,7 @@ export default function SingleProduct() {
             leaveTo='opacity-0 translate-y-4 md:translate-y-0 md:scale-95'
           >
             <div className='flex w-full transform text-left text-base transition md:my-8 md:inline-block md:max-w-2xl md:px-4 md:align-middle lg:max-w-4xl '>
-              <div className='relative flex w-full items-center overflow-hidden rounded-lg bg-offwhite-20 px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8 '>
+              <div className='relative flex w-full items-center overflow-hidden rounded-lg bg-offwhite-20 px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8 '>
                 <button
                   type='button'
                   className='absolute top-4 right-4 text-brown-400 hover:text-brown-500 sm:top-8 sm:right-6 md:top-6 md:right-6 lg:top-8 lg:right-8'
@@ -152,7 +152,7 @@ export default function SingleProduct() {
                                 hideAllHandler()
                                 cartHandler(true)
                               }}
-                              className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 py-3 px-8 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-brown-50'
+                              className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-brown-50'
                             >
                               Got To Cart
                             </button>
@@ -160,7 +160,7 @@ export default function SingleProduct() {
                             <button
                               type='button'
                               onClick={() => addItemHandler(product)}
-                              className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 py-3 px-8 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-brown-50'
+                              className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-600 px-8 py-3 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-brown-50'
                             >
                               Add to bag
                             </button>

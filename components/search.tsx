@@ -77,7 +77,7 @@ export default function Search({
                 aria-hidden='true'
               />
               <Combobox.Input
-                className='h-12 w-full border-0 bg-transparent pl-11 pr-4 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm'
+                className='h-12 w-full border-0 bg-transparent pr-4 pl-11 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm'
                 placeholder='Search...'
                 onChange={(event) => setQuery(event.target.value)}
               />
@@ -103,8 +103,7 @@ export default function Search({
                           className={({ active }) =>
                             classNames(
                               'flex cursor-default select-none items-center rounded-md px-3 py-2',
-                              active &&
-                                'bg-gray-900 bg-opacity-5 text-gray-900',
+                              active && 'bg-gray-900 bg-opacity-5 text-gray-900'
                             )
                           }
                         >
@@ -113,7 +112,7 @@ export default function Search({
                               <FolderIcon
                                 className={classNames(
                                   'h-6 w-6 flex-none text-gray-900 text-opacity-40',
-                                  active && 'text-opacity-100',
+                                  active && 'text-opacity-100'
                                 )}
                                 aria-hidden='true'
                               />
@@ -128,7 +127,7 @@ export default function Search({
                             </>
                           )}
                         </Combobox.Option>
-                      ),
+                      )
                     )}
                   </ul>
                 </li>
@@ -143,8 +142,7 @@ export default function Search({
                           className={({ active }) =>
                             classNames(
                               'flex cursor-default select-none items-center rounded-md px-3 py-2',
-                              active &&
-                                'bg-gray-900 bg-opacity-5 text-gray-900',
+                              active && 'bg-gray-900 bg-opacity-5 text-gray-900'
                             )
                           }
                         >
@@ -153,7 +151,7 @@ export default function Search({
                               <action.icon
                                 className={classNames(
                                   'h-6 w-6 flex-none text-gray-900 text-opacity-40',
-                                  active && 'text-opacity-100',
+                                  active && 'text-opacity-100'
                                 )}
                                 aria-hidden='true'
                               />
@@ -177,7 +175,7 @@ export default function Search({
             )}
 
             {query !== '' && filteredProjects.length === 0 && (
-              <div className='py-14 px-6 text-center sm:px-14'>
+              <div className='px-6 py-14 text-center sm:px-14'>
                 <FolderIcon
                   className='mx-auto h-6 w-6 text-gray-900 text-opacity-40'
                   aria-hidden='true'
