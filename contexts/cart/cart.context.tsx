@@ -25,7 +25,8 @@ function CartProvider({ children }: { children: React.ReactNode }) {
   // console.log(state && state.items, 'STATE' + getItemsCount)
   // const [state, dispatch] = useReducer(useCartReducer, InitialState)
   // const providerValue = useMemo(() => ({ state, dispatch }), [state, dispatch])
-  console.log(rehydrated, 'rehydrated' + error)
+  console.log('rehydrated', rehydrated)
+  error ? console.error(error) : null
   const providerValue = {
     state,
     addItemHandler,
