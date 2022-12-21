@@ -44,16 +44,16 @@ const navigation = {
 export default function Footer() {
   return (
     <footer
-      className='mx-auto max-w-7xl py-10 px-4 sm:px-6  lg:px-8'
+      className='mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8'
       aria-labelledby='footer-heading'
     >
       <div>
-        <div className=' border-brown-700 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0'>
+        <div className='border-brown-700  pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0'>
           <div>
-            <h3 className='text-sm font-semibold uppercase tracking-wider text-brown-400'>
+            <h3 className='text-sm font-semibold uppercase tracking-wider text-brown-400 dark:text-gray-400'>
               Subscribe to our newsletter
             </h3>
-            <p className='mt-2 text-base text-brown-300'>
+            <p className='mt-2 text-base text-brown-300 dark:text-gray-400'>
               The latest news, articles, and resources, sent to your inbox .
             </p>
           </div>
@@ -67,33 +67,33 @@ export default function Footer() {
               id='email-address'
               autoComplete='email'
               required
-              className='w-full min-w-0 appearance-none rounded-md border border-transparent py-2 px-4 text-base text-brown-900 placeholder-brown-500 focus:border-white focus:placeholder-brown-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brown-800 sm:max-w-xs'
+              className='w-full min-w-0 appearance-none rounded-md border border-transparent px-4 py-2 text-base text-brown-900 placeholder-brown-500 focus:border-white focus:placeholder-brown-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-brown-800 dark:text-gray-900 sm:max-w-xs'
               placeholder='Enter your email'
             />
             <div className='mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0'>
               <button
                 type='submit'
-                className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 py-2 px-4 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-brown-800'
+                className='flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-brown-800'
               >
                 Subscribe
               </button>
             </div>
           </form>
         </div>
-        <div className='mt-8 border-t border-brown-700 pt-8 md:flex md:items-center md:justify-between'>
+        <div className='mt-8 border-t border-brown-700 pt-8 dark:border-gray-700 md:flex md:items-center md:justify-between'>
           <div className='flex space-x-6 md:order-2'>
             {navigation.social.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className='text-brown-400 hover:text-brown-300'
+                className='text-brown-400 hover:text-brown-300 dark:text-gray-400'
               >
                 <span className='sr-only'>{item.name}</span>
                 <item.icon className='h-6 w-6' aria-hidden='true' />
               </a>
             ))}
           </div>
-          <p className='mt-8 text-base text-brown-400 md:order-1 md:mt-0'>
+          <p className='mt-8 text-base text-brown-400 dark:text-gray-400 md:order-1 md:mt-0'>
             &copy; 2023 SpreadSeeds, Inc. All rights reserved.
           </p>
         </div>
