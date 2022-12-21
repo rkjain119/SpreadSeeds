@@ -4,7 +4,7 @@ function Cta() {
   return (
     <section
       aria-labelledby='comfort-heading'
-      className='mx-auto max-w-7xl py-24 px-4 sm:py-32 sm:px-6 lg:px-8'
+      className='mx-auto max-w-7xl px-4 py-24 sm:py-32 sm:px-6 lg:px-8'
     >
       {/* Cta1 section */}
       <div className='relative overflow-hidden rounded-lg'>
@@ -15,7 +15,7 @@ function Cta() {
             className='h-full w-full object-cover object-center'
           />
         </div>
-        <div className='relative bg-gray-900 bg-opacity-75 py-32 px-6 sm:py-40 sm:px-12 lg:px-16'>
+        <div className='relative bg-gray-900 bg-opacity-75 px-6 py-32 sm:py-40 sm:px-12 lg:px-16'>
           <div className='relative mx-auto flex max-w-3xl flex-col items-center text-center'>
             <h2
               id='comfort-heading'
@@ -30,7 +30,7 @@ function Cta() {
             </p>
             <a
               href='#'
-              className='mt-8 block w-full rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-tangora-10 hover:bg-gray-100 sm:w-auto'
+              className='mt-8 block w-full rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium text-tangora-10 hover:bg-gray-100 sm:w-auto'
             >
               Shop Nature
             </a>
@@ -45,14 +45,14 @@ function Cta() {
             height={1080}
             src='https://images.unsplash.com/photo-1636525653613-2a3a05c00759?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'
             alt=''
-            className='h-full w-full object-cover object-center'
+            className='object-cover object-center w-full h-full'
           />
         </div>
         <div
           aria-hidden='true'
           className='absolute inset-0 bg-gray-900 opacity-50'
         />
-        <div className='relative mx-auto flex max-w-3xl flex-col items-center py-32 px-6 text-center sm:py-64 lg:px-0'>
+        <div className='relative flex flex-col items-center max-w-3xl px-6 py-32 mx-auto text-center sm:py-64 lg:px-0'>
           <h1 className='text-4xl font-extrabold tracking-tight text-white lg:text-6xl'>
             New arrivals are here
           </h1>
@@ -63,7 +63,7 @@ function Cta() {
           </p>
           <a
             href='#'
-            className='mt-8 inline-block rounded-md border border-transparent bg-white py-3 px-8 text-base font-medium text-tangora-10 hover:bg-gray-100'
+            className='inline-block px-8 py-3 mt-8 text-base font-medium bg-white border border-transparent rounded-md text-tangora-10 hover:bg-gray-100'
           >
             Shop New Arrivals
           </a>

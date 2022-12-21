@@ -48,7 +48,7 @@ export default function Footer() {
       aria-labelledby='footer-heading'
     >
       <div>
-        <div className='border-brown-700  pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0'>
+        <div className='border-brown-700 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0'>
           <div>
             <h3 className='text-sm font-semibold uppercase tracking-wider text-brown-400 dark:text-gray-400'>
               Subscribe to our newsletter

@@ -41,8 +41,8 @@ export default function Cart() {
   //   return price + product.price * product.quantity
   // }, 0)
   return state.items.length > 0 ? (
-    <div className='pointer-events-auto  max-w-md'>
-      <div className='flex-1 overflow-y-auto py-6 px-4 sm:px-6'>
+    <div className='pointer-events-auto max-w-md'>
+      <div className='flex-1 overflow-y-auto px-4 py-6 sm:px-6'>
         <div className='flex items-start justify-between'>
           <Dialog.Title className='text-lg font-medium text-brown-900'>
             Shopping cart
@@ -101,18 +101,18 @@ export default function Cart() {
                         <button
                           onClick={() => removeItemHandler(product)}
                           type='button'
-                          className='relative inline-flex items-center rounded-l-md  border-brown-300 bg-white px-2 py-2 text-sm font-medium text-brown-500 hover:bg-brown-50 focus:z-10 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'
+                          className='relative inline-flex items-center rounded-l-md border-brown-300 bg-white px-2 py-2 text-sm font-medium text-brown-500 hover:bg-brown-50 focus:z-10 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'
                         >
                           <span className='sr-only'>Previous</span>
                           <MinusIcon className='h-5 w-5' aria-hidden='true' />
                         </button>
-                        <span className=' inline-flex items-center  border-brown-300 bg-white px-2 py-2 text-sm font-medium text-brown-500 hover:bg-brown-50 focus:z-10 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'>
+                        <span className='inline-flex items-center border-brown-300 bg-white px-2 py-2 text-sm  font-medium text-brown-500 hover:bg-brown-50 focus:z-10 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'>
                           {product.quantity}
                         </span>
                         <button
                           onClick={() => addItemHandler(product)}
                           type='button'
-                          className='relative -ml-px inline-flex items-center rounded-r-md  border-brown-300 bg-white px-2 py-2 text-sm font-medium text-brown-500 hover:bg-brown-50 focus:z-10 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'
+                          className='relative -ml-px inline-flex items-center rounded-r-md border-brown-300 bg-white px-2 py-2 text-sm font-medium text-brown-500 hover:bg-brown-50 focus:z-10 focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500'
                         >
                           <span className='sr-only'>Next</span>
                           <PlusIcon className='h-5 w-5' aria-hidden='true' />
@@ -127,7 +127,7 @@ export default function Cart() {
         </div>
       </div>
 
-      <div className='border-t border-brown-200 py-6 px-4 sm:px-6'>
+      <div className='border-t border-brown-200 px-4 py-6 sm:px-6'>
         <div className='flex justify-between text-base font-medium text-brown-900'>
           <p>Total</p>
           <p>₹ {cartTotal}</p>
@@ -146,7 +146,7 @@ export default function Cart() {
             Checkout
           </a>
         </div>
-        <div className='mt-6  justify-center text-center text-sm text-brown-500'>
+        <div className='mt-6 justify-center text-center text-sm text-brown-500'>
           <p>or</p>
           <button
             type='button'
@@ -160,7 +160,7 @@ export default function Cart() {
       </div>
     </div>
   ) : (
-    <div className='mt-6  justify-center text-center text-sm text-brown-500'>
+    <div className='mt-6 justify-center text-center text-sm text-brown-500'>
       <h3 className='p-6 text-lg font-medium text-brown-900'>
         Your cart is empty
       </h3>
